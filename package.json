@@ -1,0 +1,22 @@
+{
+  "name": "goodreadme-generator",
+  "version": "1.0.0",
+  "description": "This is ReadMe generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/annisapf/GoodReadMe-Generator.git"
+  },
+  "keywords": [
+    "readme"
+  ],
+  "author": "Annisa Purbandari",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/annisapf/GoodReadMe-Generator/issues"
+  },
+  "homepage": "https://github.com/annisapf/GoodReadMe-Generator#readme"
+}
