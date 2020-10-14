@@ -3,7 +3,6 @@ const path = require('path');
 const util = require('util');
 const inquirer = require('inquirer');
 
-//
 const input = [
     {
         type: "input",
@@ -27,7 +26,7 @@ const input = [
         type: "input",
         name: "URL",
         message: "the URL to your project?",
-        default: 'goodReadMe'
+        default: 'GoodReadMe'
     },
     {
         type: "input",
@@ -78,3 +77,14 @@ const input = [
         default: 'this is an open source app - anyone can contribute'
     }
 ]
+
+function createReadme(name, data) {
+    return fs.writeFileSync(path.join(process.cwd(), name), data);
+}
+
+function showQuestion() {
+    inquirer.prompt(input).then(responses =>
+        createReadme(`${responses.fName}.md`))
+}
+
+showQuestion()
