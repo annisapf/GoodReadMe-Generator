@@ -11,12 +11,15 @@
     "url": "git+https://github.com/annisapf/GoodReadMe-Generator.git"
   },
   "keywords": [
-    "readme"
+    "npm"
   ],
   "author": "Annisa Purbandari",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/annisapf/GoodReadMe-Generator/issues"
   },
-  "homepage": "https://github.com/annisapf/GoodReadMe-Generator#readme"
+  "homepage": "https://github.com/annisapf/GoodReadMe-Generator#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3"
+  }
 }
