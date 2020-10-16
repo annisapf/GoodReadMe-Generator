@@ -21,7 +21,7 @@ const input = [
         type: "input",
         name: "fileName",
         message: "Please provide the name for a .md file",
-        default: 'README'
+        default: 'GOODREADME'
     },
     {
         type: "input",
@@ -94,21 +94,23 @@ function writeReadMeFile(fileName, data) {
     })
 }
 
-function init() {
+async function init() {
     inquirer.prompt(input).then(function (data) {
         console.log(data);
         let url = "https://api.github.com/users/" + data.Username + "/events/public"
 
         axios.get(url).then(function (response) {
 
-            let email = response.data;
-            data["email"] = email
+            let email = response.data.email;
+            data["email"] = email;
 
-            writeReadMeFile("test.md", generateReadMeFile(data))
+            writeReadMeFile(data.fileName + ".md", generateReadMeFile(data))
+
         })
 
     });
 }
+
 
 init();
 
@@ -118,7 +120,7 @@ function getGitHubLink(GitHub, link) {
 
 function getBadge(licence, GitHub, title, color, link) {
     if (licence !== 'None') {
-        return `[![GitHub licence](https://img.shields.io/badge/)-${color}.svg)](${getGitHubLink(GitHub, title, link)})`
+        return `[![GitHub licence](https://img.shields.io/badge/-${color}.svg)](${getGitHubLink(GitHub, title, link)})`
     } else {
         return ``
     }
@@ -127,8 +129,7 @@ function getBadge(licence, GitHub, title, color, link) {
 function getLicense(license) {
     if (license !== 'None') {
         return `
-    ## License
-
+## License
     License is ${license} standard license.`
     } else {
         return ``
@@ -138,58 +139,63 @@ function getLicense(license) {
 
 function generateReadMeFile(data) {
     return `
-    # ${data.title}
-    ${getBadge(data.license, data.GitHub, data.title, data.color, data.URL)}
+# ${data.title}
+${getBadge(data.license, data.GitHub, data.title, data.color, data.URL)}
     
-    ## Description
+## Description
     
-    ${data.description}
+${data.description}
     
-    ## Table of Contents 
+## Table of Contents 
     
-    * [Installation](#installation)
+* [Installation](#installation)
     
-    * [Usage](#usage)
+* [Usage](#usage)
     
-    * [License](#license)
+* [License](#license)
     
-    * [Contributing](#contributing)
+* [Contributing](#contributing)
     
-    * [Tests](#tests)
+* [Tests](#tests)
     
-    * [Questions](#questions)
+* [Questions](#questions)
     
-    ## Installation
+## Installation
     
-    To install necessary dependencies, run the following command:
+To install necessary dependencies, run the following command:
     
-    \`\`\`
-    ${data.installation}
-    \`\`\`
+\`\`\`
+${data.installation}
+\`\`\`
     
-    ## Usage
+## Usage
     
-    ${data.usage}
+${data.usage}
+
     
-    ${getLicense(data.license)}
+${getLicense(data.license)}
         
-    ## Contributing
+## Contributing
     
-    ${data.contributing}
+${data.contributing}
     
-    ## Tests
+## Tests
     
-    To run tests, run the following command:
+To run tests, run the following command:
     
-    \`\`\`
-    ${data.test}
-    \`\`\`
+\`\`\`
+${data.test}
+\`\`\`
+
     
-    ## Questions
+## Questions
     
-    If you have any questions about the repo, open an issue or contact [${data.GitHub}](https://github.com/annisapf/) directly at ${data.email}.`;
+If you have any questions about the repo, open an issue or contact [${data.GitHub}](https://github.com/annisapf/) directly at ${data.email}.`;
 }
 
-
-
-
+function generatePDFFile(data) {
+    return `
+    "This is Project Title: ", ${data.title}
+    ${getBadge(data.license, data.GitHub, data.title, data.color, data.URL)}
+  `
+}

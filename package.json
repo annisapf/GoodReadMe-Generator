@@ -23,6 +23,7 @@
     "axios": "^0.20.0",
     "email-validator": "^2.0.4",
     "email-verifier": "^0.4.1",
-    "inquirer": "^7.3.3"
+    "inquirer": "^7.3.3",
+    "pdfjs": "^2.4.1"
   }
 }
