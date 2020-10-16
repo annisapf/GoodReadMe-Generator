@@ -1,6 +1,6 @@
 
 # GoodREADME.md generator
-[![Licence : MIT](https://img.shields.io/badge/Licence-MIT-blue.svg)](https://opensource.org/licences/MIT)
+[![Licence : MIT](https://img.shields.io/badge/Licence-MIT-magenta.svg)](https://opensource.org/licences/MIT)
     
 ## Description
     
@@ -50,7 +50,7 @@ this is an open source app - anyone can contribute
 To run tests, run the following command:
     
 ```
-npm test
+npm run test
 ```
 
     

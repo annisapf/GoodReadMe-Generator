@@ -56,7 +56,7 @@ const input = [
         type: "list",
         name: "license",
         message: "Please choose a licence below",
-        choices: ["MIT", "APACHE 2.0", "Eclipse", "IBM", "ISC", "None"]
+        choices: ["MIT", "ISC", "Apache", "IPL", "Unlicense"]
     },
     {
         type: "list",
@@ -74,7 +74,7 @@ const input = [
         type: "input",
         name: "test",
         message: "What command should be run to run tests?",
-        default: "npm test"
+        default: "npm run test"
     },
     {
         type: "input",
@@ -119,13 +119,16 @@ async function init() {
 
 init();
 
-function getGitHubLink(GitHub, link) {
-    return `http://github.com/${GitHub}/${link}`;
-}
 
 function getBadge(licence, color) {
     if (licence !== 'None') {
         return `[![Licence : ${licence}](https://img.shields.io/badge/Licence-${licence}-${color}.svg)](https://opensource.org/licences/${licence})`
+    } else if (licence === 'Apache') {
+        return `[![Licence : ${licence}](https://img.shields.io/badge/Licence-${licence}-%202.0-${color}.svg)](https://opensource.org/licences/${licence}-2.0)`
+    } else if (licence === 'IPL') {
+        return `[![Licence : ${licence}](https://img.shields.io/badge/Licence-${licence}-${color}.svg)](https://opensource.org/licences/${licence}-1.0)`
+    } else if (licence === 'Unlicence') {
+        return `[![License: Unlicense](https://img.shields.io/badge/license-${licence}-${color}.svg)](http://unlicense.org/)`
     } else {
         return ``
     }
@@ -145,7 +148,7 @@ function getLicense(license) {
 function generateReadMeFile(data) {
     return `
 # ${data.title}
-${getBadge(data.license, data.GitHub, data.title, data.color, data.URL)}
+${getBadge(data.license, data.color,)}
     
 ## Description
     
@@ -199,12 +202,5 @@ ${data.test}
     
 ## Questions
     
-If you have any questions about the repo, open an issue or contact [${data.GitHub}](https://github.com/annisapf/) directly at ${data.email}.`;
-}
-
-function generatePDFFile(data) {
-    return `
-    "This is Project Title: ", ${data.title}
-    ${getBadge(data.license, data.GitHub, data.title, data.color, data.URL)}
-  `
+If you have any questions about the repo, open an issue or contact [${data.GitHub}](https://github.com/${data.GitHub}/) directly at ${data.email}.`;
 }
