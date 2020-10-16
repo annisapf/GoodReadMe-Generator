@@ -1,4 +1,5 @@
 # GoodReadMe-Generator
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 *Good README.md Generator* is a CLI (Command-Line Interface) apps that dynamicallly generates a professional README.md from a user's input using the Inquirer package.
 
 
@@ -56,20 +57,16 @@ npm i
 
 
 ## Usage
-
 It is an open project and everyone can contribute - please send and email requesting to be added as a contributor!
 
 
 ## License
-
-    License is MIT standard license.
+License is MIT standard license.
     
 ## Contributing
-
-this is an open source app - anyone can contribute
+This is an open source app - anyone can contribute
 
 ## Tests
-
 To run tests, run the following command:
 
 ```
