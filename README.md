@@ -9,7 +9,17 @@
 ## User Story
     
 AS A developer,I WANT a README generator, SO THAT can quickly create a professional README for a new project
-    
+
+## Demo Video
+![Demo Good ReadMe Generator](https://j.gifs.com/nxpgQp.gif)
+
+## Screen shots
+ ![Screen Shot 2020-10-16 at 16 38 34](https://user-images.githubusercontent.com/7066137/96217325-12eaf600-0fce-11eb-8aeb-87286d1443d8.png)
+
+
+![Screen Shot 2020-10-16 at 16 35 41](https://user-images.githubusercontent.com/7066137/96217381-2dbd6a80-0fce-11eb-8781-5a290b9d8758.png)
+
+
 ## Table of Contents 
     
 * [Installation](#installation)
@@ -37,7 +47,6 @@ npm i
 It is an open project and everyone can contribute - please send and email requesting to be added as a contributor!
 
     
-
 ## License
     License is MIT standard license.
         
