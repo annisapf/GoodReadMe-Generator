@@ -1,7 +1,5 @@
 const fs = require('fs');
 const axios = require('axios');
-const path = require('path');
-const util = require('util');
 const inquirer = require('inquirer');
 
 
@@ -21,7 +19,7 @@ const input = [
         type: "input",
         name: "fileName",
         message: "Please provide the name for a .md file",
-        default: 'GOODREADME'
+        default: 'README'
     },
     {
         type: "input",
@@ -34,7 +32,7 @@ const input = [
         type: "input",
         name: "URL",
         message: "Please type the URL to your project",
-        default: 'GoodReadMe'
+        default: 'GOODREADME'
     },
     {
         type: "input",
@@ -46,19 +44,25 @@ const input = [
         type: "input",
         name: "description",
         message: "Please write a short description of your project",
-        default: 'this is an app I developed so I can automate read me file development'
+        default: "*Good README.md Generator* is a CLI (Command-Line Interface) apps that dynamicallly generates a professional README.md from a user's input using the Inquirer package."
+    },
+    {
+        type: "input",
+        name: "userstory",
+        message: "Please tell a user story",
+        default: "AS A developer,I WANT a README generator, SO THAT can quickly create a professional README for a new project"
     },
     {
         type: "list",
         name: "license",
         message: "Please choose a licence below",
-        choices: ["MIT", "APACHE 2.0", "GPL 3.0", "BSD 3", "None"]
+        choices: ["MIT", "APACHE 2.0", "Eclipse", "IBM", "ISC", "None"]
     },
     {
         type: "list",
         name: "color",
         message: "Please choose your favourite colour",
-        choices: ["red", "green", "purple", "black", "magenta"]
+        choices: ["blue", "green", "magenta", "yellow", "grey"]
     },
     {
         type: "input",
@@ -97,11 +101,12 @@ function writeReadMeFile(fileName, data) {
 async function init() {
     inquirer.prompt(input).then(function (data) {
         console.log(data);
+
         let url = "https://api.github.com/users/" + data.Username + "/events/public"
 
         axios.get(url).then(function (response) {
 
-            let email = response.data.email;
+            let email = data.email;
             data["email"] = email;
 
             writeReadMeFile(data.fileName + ".md", generateReadMeFile(data))
@@ -118,9 +123,9 @@ function getGitHubLink(GitHub, link) {
     return `http://github.com/${GitHub}/${link}`;
 }
 
-function getBadge(licence, GitHub, title, color, link) {
+function getBadge(licence, color) {
     if (licence !== 'None') {
-        return `[![GitHub licence](https://img.shields.io/badge/-${color}.svg)](${getGitHubLink(GitHub, title, link)})`
+        return `[![Licence : ${licence}](https://img.shields.io/badge/Licence-${licence}-${color}.svg)](https://opensource.org/licences/${licence})`
     } else {
         return ``
     }
@@ -145,6 +150,10 @@ ${getBadge(data.license, data.GitHub, data.title, data.color, data.URL)}
 ## Description
     
 ${data.description}
+
+## User Story
+    
+${data.userstory}
     
 ## Table of Contents 
     
