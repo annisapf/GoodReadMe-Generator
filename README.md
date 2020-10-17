@@ -4,23 +4,16 @@
     
 ## Description
     
-*Good README.md Generator* is a CLI (Command-Line Interface) apps that dynamicallly generates a professional README.md from a user's input using the Inquirer package.
+*Good README.md Generator* is a CLI (Command-Line Interface) apps that dynamically generates a professional README.md from a user's input using the Axios, Inquirer and HTML-PDFcle package.
 
-## User Story
     
-AS A developer,I WANT a README generator, SO THAT can quickly create a professional README for a new project
-
-## Demo Video
-![Demo Good ReadMe Generator](https://j.gifs.com/nxpgQp.gif)
-
-## Screen shots
- ![Screen Shot 2020-10-16 at 16 38 34](https://user-images.githubusercontent.com/7066137/96217325-12eaf600-0fce-11eb-8aeb-87286d1443d8.png)
-
-
-![Screen Shot 2020-10-16 at 16 35 41](https://user-images.githubusercontent.com/7066137/96217381-2dbd6a80-0fce-11eb-8781-5a290b9d8758.png)
-
-
 ## Table of Contents 
+
+* [User Story](#userstory)
+
+* [Demo Video](#demovideo)
+
+* [Screen Shots](#screenshots)
     
 * [Installation](#installation)
     
@@ -33,34 +26,59 @@ AS A developer,I WANT a README generator, SO THAT can quickly create a professio
 * [Tests](#tests)
     
 * [Questions](#questions)
+
+## User Story
     
+AS A developer,I WANT a README generator, SO THAT can quickly create a professional README for a new project
+
+## Demo Video
+    
+![Demo Good ReadMe Generator](https://j.gifs.com/zvGn88.gif)
+
+## Screenshots
+
+![Screen Shot 2020-10-16 at 16 38 34](https://user-images.githubusercontent.com/7066137/96330189-14382380-109f-11eb-87ff-4db08d0b7a51.png)
+![Screen Shot 2020-10-16 at 16 35 41](https://user-images.githubusercontent.com/7066137/96330205-3631a600-109f-11eb-8c8d-f98821f2d3cd.png)
+    
+   
 ## Installation
     
+This project uses 2 npm packages: 
+* [axios](https://www.npmjs.com/package/axios)
+* [inquirer](https://www.npmjs.com/package/inquirer)
 To install necessary dependencies, run the following command:
     
 ```
 npm i
 ```
+
+```
+npm install html-pdf
+```
     
 ## Usage
     
-It is an open project and everyone can contribute - please send and email requesting to be added as a contributor!
+To run tests, run the following command:
+    
+```
+node index.js
+```
+
 
     
+
 ## License
     License is MIT standard license.
         
 ## Contributing
     
-this is an open source app - anyone can contribute
+It is an open project and everyone can contribute - please send and email requesting to be added as a contributor
+
     
 ## Tests
     
-To run tests, run the following command:
-    
-```
-npm run test
-```
+There is no testing required
+
 
     
 ## Questions

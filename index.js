@@ -1,6 +1,7 @@
 const fs = require('fs');
 const axios = require('axios');
 const inquirer = require('inquirer');
+const pdf = require('html-pdf');
 
 
 const validateEmail = (email) => {
@@ -44,13 +45,31 @@ const input = [
         type: "input",
         name: "description",
         message: "Please write a short description of your project",
-        default: "*Good README.md Generator* is a CLI (Command-Line Interface) apps that dynamicallly generates a professional README.md from a user's input using the Inquirer package."
+        default: "*Good README.md Generator* is a CLI (Command-Line Interface) apps that dynamically generates a professional README.md from a user's input using the Axios, Inquirer and HTML-PDFcle package."
     },
     {
         type: "input",
         name: "userstory",
         message: "Please tell a user story",
         default: "AS A developer,I WANT a README generator, SO THAT can quickly create a professional README for a new project"
+    },
+    {
+        type: "input",
+        name: "demovideo",
+        message: "Link to video",
+        default: "![Demo Good ReadMe Generator](https://j.gifs.com/zvGn88.gif)"
+    },
+    {
+        type: "input",
+        name: "firstscreenshot",
+        message: "Link to screenshot image",
+        default: "https://user-images.githubusercontent.com/7066137/96330189-14382380-109f-11eb-87ff-4db08d0b7a51.png"
+    },
+    {
+        type: "input",
+        name: "secondscreenshot",
+        message: "Link to another screenshot image",
+        default: "https://user-images.githubusercontent.com/7066137/96330205-3631a600-109f-11eb-8c8d-f98821f2d3cd.png"
     },
     {
         type: "list",
@@ -66,27 +85,33 @@ const input = [
     },
     {
         type: "input",
-        name: "installation",
+        name: "iinstallation",
         message: "What command should be run to install dependencies?",
         default: "npm i"
     },
     {
         type: "input",
+        name: "htmlpdfinstallation",
+        message: "What other command should be run to install dependencies?",
+        default: "npm install html-pdf"
+    },
+    {
+        type: "input",
         name: "test",
         message: "What command should be run to run tests?",
-        default: "npm run test"
+        default: "There is no testing required"
     },
     {
         type: "input",
         name: "usage",
-        message: "What does the user need to know about using the repository?",
-        default: "It is an open project and everyone can contribute - please send and email requesting to be added as a contributor!"
+        message: "What command should be run to run tests?",
+        default: "node index.js"
     },
     {
         type: "input",
         name: "contributing",
         message: "What does the user need to know about contributing to the repository?",
-        default: 'this is an open source app - anyone can contribute'
+        default: "It is an open project and everyone can contribute - please send and email requesting to be added as a contributor"
     }
 ]
 
@@ -104,12 +129,218 @@ async function init() {
 
         let url = "https://api.github.com/users/" + data.Username + "/events/public"
 
+
         axios.get(url).then(function (response) {
 
             let email = data.email;
             data["email"] = email;
 
             writeReadMeFile(data.fileName + ".md", generateReadMeFile(data))
+
+            // HTML object for PDF template
+            const htmlContent = `
+            <!DOCTYPE html>
+            <html lang="en">
+            
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta name="description" content="Good ReadMe Generator" />
+                <meta name="keywords" content="ReadMe Generator, HTML PDF Generator">
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <meta http-equiv="x-ua-compatible" content="ie=edge">
+            
+                <title>GoodReadMe Generator</title>
+            
+            
+                <!-- Bootstrap CSS -->
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+            
+            </head>
+            
+            <body>
+            
+                <main>
+            
+                    <br><br><br>
+            
+                    <div class="container">
+            
+                        <div class="row row-content align-items-center">
+                            <div class="col-sm col-md flex-first">
+            
+                                <h3 id="html-pdf" class="mt-0">${data.title}</h3>
+                                <hr>
+                                <br>
+            
+                            </div>
+                        </div>
+            
+                        <div class="row row-content align-items-center">
+                            <div class="col-sm col-md flex-first">
+            
+                                <h3 class="mt-0">Description</h3>
+                                <hr>
+                                <p>${data.description}</p>>
+            
+                                <br>
+            
+                            </div>
+                        </div>
+            
+                        <div class="row row-content align-items-center">
+                            <div class="col-sm col-md flex-first">
+            
+                                <h3 class="mt-0">Table of Contents</h3>
+                                <hr>
+                                <p>
+                                    <ul>
+
+                                    <li> User Story </li>
+
+                                    <li> Screenshots </li>
+
+                                    <li> Installation </li>
+            
+                                    <li> Usage </li>
+            
+                                    <li> License </li>
+            
+                                    <li> Contributing </li>
+            
+                                    <li> Tests </li>
+            
+                                    <li> Questions
+            
+                                </p>
+            
+                                <br>
+            
+                            </div>
+                        </div>
+
+
+                        <div class="row row-content align-items-center">
+                            <div class="col-sm col-md flex-first">
+            
+                                <h3 id="userstory" class="mt-0">User Story</h3>
+                                <hr>
+                                <p>${data.userstory}</p>>
+            
+                                <br>
+            
+                            </div>
+                        </div>
+
+                        <div class="row row-content align-items-center">
+                        <div class="col-sm col-md flex-first">
+        
+                            <h3 class="mt-0">Screenshots</h3>
+                            <hr>
+                            <img src="${data.firstscreenshot}"/>
+                            
+        
+                            <br>
+        
+                        </div>
+                    </div>
+            
+                        <div class="row row-content align-items-center">
+                            <div class="col-sm col-md flex-first">
+            
+                                <h3 class="mt-0">Installation</h3>
+                                <hr>
+                                <p>To install necessary dependencies, run the following command:</p>
+
+                                <div class="p-3 mb-2 bg-light text-dark">${data.iinstallation}</div>
+                                <div class="p-3 mb-2 bg-light text-dark">${data.htmlpdfinstallation}</div>
+                            
+                                <br>
+            
+                            </div>
+                        </div>
+            
+                        <div class="row row-content align-items-center">
+                            <div class="col-sm col-md flex-first">
+            
+                                <h3 class="mt-0">Usage</h3>
+                                <hr>
+                             
+                                <div class="p-3 mb-2 bg-light text-dark">${data.usage}</div>
+            
+                                <br>
+            
+                            </div>
+                        </div>
+            
+                        <div class="row row-content align-items-center">
+                            <div class="col-sm col-md flex-first">
+            
+                                <h3 class="mt-0">Licence</h3>
+                                <hr>
+                                <p>${data.license}</p>
+            
+                                <br>
+            
+                            </div>
+                        </div>
+            
+                        <div class="row row-content align-items-center">
+                            <div class="col-sm col-md flex-first">
+            
+                                <h3 class="mt-0">Contributing</h3>
+                                <hr>
+                                <p>${data.contributing}</p>
+            
+                                <br>
+            
+                            </div>
+                        </div>
+            
+                        <div class="row row-content align-items-center">
+                            <div class="col-sm col-md flex-first">
+            
+                                <h3 class="mt-0">Test</h3>
+                                <hr>
+                                <p>${data.test}</p>
+            
+                                <br>
+            
+                            </div>
+                        </div>
+            
+            
+                        <div class="row row-content align-items-center">
+                            <div class="col-sm col-md flex-first">
+            
+                                <h3 class="mt-0">Questions</h3>
+                                <hr>
+                                <p>If you have any questions about the repo, open an issue or contact <a href="https://github.com/${data.GitHub}/"></a> directly at 
+                                <div class="p-3 mb-2 bg-info text-white">${data.email}</div></p>
+            
+                                <br>
+            
+                            </div>
+                        </div>
+            
+                    </div>
+                </main>
+            
+            </body>
+            
+            </html>
+            `
+            // Set paper size to PDF file
+            var options = { format: 'A2' };
+
+            // This function to generate from HTML format to PDF document
+            pdf.create(htmlContent, options).toFile('./README.pdf', function (err, res) {
+                if (err) return console.log(err);
+                console.log(res);
+            })
+
 
         })
 
@@ -148,17 +379,20 @@ function getLicense(license) {
 function generateReadMeFile(data) {
     return `
 # ${data.title}
-${getBadge(data.license, data.color,)}
+${getBadge(data.license, data.color)}
     
 ## Description
     
 ${data.description}
 
-## User Story
-    
-${data.userstory}
     
 ## Table of Contents 
+
+* [User Story](#userstory)
+
+* [Demo Video](#demovideo)
+
+* [Screen Shots](#screenshots)
     
 * [Installation](#installation)
     
@@ -171,18 +405,44 @@ ${data.userstory}
 * [Tests](#tests)
     
 * [Questions](#questions)
+
+## User Story
     
+${data.userstory}
+
+## Demo Video
+    
+${data.demovideo}
+
+## Screenshots
+
+![Screen Shot 2020-10-16 at 16 38 34](${data.firstscreenshot})
+![Screen Shot 2020-10-16 at 16 35 41](${data.secondscreenshot})
+    
+   
 ## Installation
     
+This project uses 2 npm packages: 
+* [axios](https://www.npmjs.com/package/axios)
+* [inquirer](https://www.npmjs.com/package/inquirer)
 To install necessary dependencies, run the following command:
     
 \`\`\`
-${data.installation}
+${data.iinstallation}
+\`\`\`
+
+\`\`\`
+${data.htmlpdfinstallation}
 \`\`\`
     
 ## Usage
     
+To run tests, run the following command:
+    
+\`\`\`
 ${data.usage}
+\`\`\`
+
 
     
 ${getLicense(data.license)}
@@ -190,17 +450,16 @@ ${getLicense(data.license)}
 ## Contributing
     
 ${data.contributing}
+
     
 ## Tests
     
-To run tests, run the following command:
-    
-\`\`\`
 ${data.test}
-\`\`\`
+
 
     
 ## Questions
     
 If you have any questions about the repo, open an issue or contact [${data.GitHub}](https://github.com/${data.GitHub}/) directly at ${data.email}.`;
 }
+
