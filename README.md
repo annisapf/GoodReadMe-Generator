@@ -4,7 +4,7 @@
     
 ## Description
     
-*Good README.md Generator* is a CLI (Command-Line Interface) apps that dynamically generates a professional README.md from a user's input using the Axios, Inquirer and HTML-PDFcle package.
+*Good README.md Generator* is a CLI (Command-Line Interface) apps that dynamically generates a professional README.md from a user's input using the Axios, Inquirer and HTML-PDF package.
 
     
 ## Table of Contents 
@@ -33,7 +33,7 @@ AS A developer,I WANT a README generator, SO THAT can quickly create a professio
 
 ## Demo Video
     
-![Demo Good ReadMe Generator](https://j.gifs.com/zvGn88.gif)
+![Demo Good ReadMe Generator](https://j.gifs.com/gZg79j.gif)
 
 ## Screenshots
 

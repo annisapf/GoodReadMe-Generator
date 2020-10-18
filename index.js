@@ -45,7 +45,7 @@ const input = [
         type: "input",
         name: "description",
         message: "Please write a short description of your project",
-        default: "*Good README.md Generator* is a CLI (Command-Line Interface) apps that dynamically generates a professional README.md from a user's input using the Axios, Inquirer and HTML-PDFcle package."
+        default: "*Good README.md Generator* is a CLI (Command-Line Interface) apps that dynamically generates a professional README.md from a user's input using the Axios, Inquirer and HTML-PDF package."
     },
     {
         type: "input",
@@ -57,7 +57,7 @@ const input = [
         type: "input",
         name: "demovideo",
         message: "Link to video",
-        default: "![Demo Good ReadMe Generator](https://j.gifs.com/zvGn88.gif)"
+        default: "![Demo Good ReadMe Generator](https://j.gifs.com/gZg79j.gif)"
     },
     {
         type: "input",
@@ -183,7 +183,7 @@ async function init() {
             
                                 <h3 class="mt-0">Description</h3>
                                 <hr>
-                                <p>${data.description}</p>>
+                                <p>${data.description}</p>
             
                                 <br>
             
@@ -227,7 +227,7 @@ async function init() {
             
                                 <h3 id="userstory" class="mt-0">User Story</h3>
                                 <hr>
-                                <p>${data.userstory}</p>>
+                                <p>${data.userstory}</p>
             
                                 <br>
             
